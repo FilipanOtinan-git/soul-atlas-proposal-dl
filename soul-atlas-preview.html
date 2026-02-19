@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul Atlas Proposal | Bringing Fantasy Architecture to Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VISUAL LANGUAGE SYSTEM --- */
+        :root {
+            --color-void: #0b0d12;       /* Deepest Dark */
+            --color-ink: #151922;        /* Panel Background */
+            --color-paper: #e6e2d3;      /* Light Mode Elements */
+            --color-gold: #c6a87c;       /* Soul Atlas Gold */
+            --color-gold-dim: #8a7350;   /* Muted Gold */
+            --color-text-main: #e6e2d3;
+            --color-text-muted: #8892b0;
+            
+            --font-display: 'Cinzel', serif;
+            --font-body: 'Lato', sans-serif;
+            
+            --grid-pattern: linear-gradient(rgba(198, 168, 124, 0.03) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(198, 168, 124, 0.03) 1px, transparent 1px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--color-void);
+            color: var(--color-text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1, h2, h3 { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .gold-text { color: var(--color-gold); }
+        .muted-text { color: var(--color-text-muted); }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 36px;
+            background: rgba(198, 168, 124, 0.1);
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--color-gold);
+            color: var(--color-void);
+            box-shadow: 0 0 20px rgba(198, 168, 124, 0.3);
+        }
+
+        /* --- BLUEPRINT BACKGROUND --- */
+        .blueprint-bg {
+            background-image: var(--grid-pattern);
+            background-size: 40px 40px;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--color-gold-dim);
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 850px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            color: var(--color-gold);
+            margin-bottom: 2rem;
+            display: block;
+            opacity: 0.8;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to bottom, #fff, #c6a87c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- THE BRIEF (VIDEO) --- */
+        .section-brief {
+            padding: 80px 0;
+            background: var(--color-ink);
+            border-bottom: 1px solid #2a2f3a;
+        }
+
+        .brief-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border: 1px solid var(--color-gold-dim);
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .video-placeholder {
+            aspect-ratio: 16/9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-placeholder img {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s;
+        }
+
+        .video-placeholder:hover img { opacity: 0.4; transform: scale(1.05); }
+
+        .play-icon {
+            position: absolute;
+            width: 60px; height: 60px;
+            border: 2px solid var(--color-gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .play-icon::after {
+            content:''; display: block; width: 0; height: 0;
+            border-left: 15px solid var(--color-gold);
+            border-top: 10px solid transparent; border-bottom: 10px solid transparent;
+            margin-left: 5px;
+        }
+
+        /* --- CONSTRAINTS (LORE) --- */
+        .section-lore {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .constraint-card {
+            background: rgba(21, 25, 34, 0.8);
+            border: 1px solid #333;
+            padding: 40px;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .constraint-card::before {
+            content: ''; position: absolute; top: -1px; left: -1px;
+            width: 20px; height: 20px;
+            border-top: 2px solid var(--color-gold);
+            border-left: 2px solid var(--color-gold);
+        }
+
+        .constraint-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px;
+        }
+
+        .constraint-number {
+            font-family: var(--font-display);
+            color: var(--color-gold);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+        }
+
+        .split-content {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+        }
+
+        .lore-visual img {
+            width: 100%; border-radius: 2px;
+            filter: sepia(20%) contrast(110%);
+        }
+
+        /* --- PROPOSAL STEPS --- */
+        .section-proposal {
+            padding: 100px 0;
+            text-align: center;
+            background: rgba(21, 25, 34, 0.4);
+            border-top: 1px solid #2a2f3a;
+        }
+
+        .steps-wrapper {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+            margin: 60px 0;
+        }
+
+        .step-box {
+            background: var(--color-ink);
+            border: 1px solid #333;
+            padding: 40px 30px;
+            transition: 0.3s;
+            text-align: left;
+            position: relative;
+        }
+
+        .step-box:hover { border-color: var(--color-gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+        .step-num {
+            font-size: 3.5rem; color: rgba(198, 168, 124, 0.1);
+            font-family: var(--font-display); font-weight: 700;
+            line-height: 1; margin-bottom: 15px;
+            position: absolute; top: 20px; right: 20px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .brief-layout, .split-content, .steps-wrapper { grid-template-columns: 1fr; flex-direction: column; }
+            .step-box { text-align: center; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="blueprint-bg"></div>
+
+    <header>
+        <div class="container hero-content">
+            <span class="logo">SOUL ✦ ATLAS</span>
+            <h1>The Architecture of a<br>Beautiful Lie</h1>
+            <p>A proposal for <strong>Dami Lee</strong> to define the visual language of the "Honordom Empire" for our upcoming Noir High-Fantasy film in Lisbon, Portugal.</p>
+            <a href="#brief" class="btn">View the Design Challenge</a>
+        </div>
+    </header>
+
+    <section id="brief" class="section-brief">
+        <div class="container">
+            <div class="brief-layout">
+                <div class="video-wrapper">
+                    <div class="video-placeholder" onclick="alert('This triggers a personal Loom from Jonas saying: Hey Dami, your Hobbiton breakdown changed how we approach world-building...')">
+                        <img src="https://placehold.co/800x450/151922/c6a87c?text=Jonas'+Personal+Video+for+Dami" alt="Founder Video">
+                        <div class="play-icon"></div>
+                    </div>
+                    <p style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: var(--color-text-muted);">A 60-Second Personal Message from Jonas David</p>
+                </div>
+                
+                <div>
+                    <h2 class="gold-text">The Impact of Your Work</h2>
+                    <br>
+                    <p class="muted-text" style="margin-bottom: 20px;">Hi Dami, I’m Jonas, a filmmaker based in Europe. I’ve followed your work for years. Specifically, your breakdown of <strong>Hobbiton</strong> fundamentally changed how we approach world-building in our studio.</p>
+                    
+                    <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #fff;">The Project</h3>
+                    <p class="muted-text">We are filming a "Noir High-Fantasy" movie (think <em>Game of Thrones</em> meets <em>Andor</em>) in Lisbon in 2027. We have the lore and the story, but we need an Architect.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-lore">
+        <div class="container">
+            <div class="constraint-card">
+                <div class="constraint-header">
+                    <h2>The Challenge: Spatial Psychology</h2>
+                    <span class="constraint-number">ARCH-LOG-01</span>
+                </div>
+                <div class="split-content">
+                    <div class="lore-text">
+                        <p class="muted-text" style="margin-bottom: 1rem;">Your fans value your focus on spatial psychology. Our film mirrors this completely, treating architecture as a weapon of the state.</p>
+                        <p style="color: #fff; border-left: 2px solid var(--color-gold); padding-left: 15px;">
+                            <strong>The Core Concept:</strong> We are casting architecture as the lead character to enforce the <em>'Imperial Truth'</em>. We need you to design a visual language that makes this psychological control feel real, oppressive, yet beautiful.
+                        </p>
+                    </div>
+                    <div class="lore-visual">
+                        <img src="https://placehold.co/600x400/0f1218/c6a87c?text=Concept:+Architecture+as+Propaganda" alt="Imperial Truth Concept">
+                        <p style="font-size: 0.8rem; margin-top: 5px; color: var(--color-gold);">Fig 1.1 - The Honordom Empire Aesthetics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-proposal">
+        <div class="container">
+            <h2 class="gold-text" style="margin-bottom: 20px;">The Proposal</h2>
+            <p class="muted-text" style="max-width: 700px; margin: 0 auto;">Our 200+ person crew is working on a profit-share model out of sheer passion to build something legendary. We want to offer you full access to our resources in exchange for your vision.</p>
+
+            <div class="steps-wrapper">
+                <div class="step-box">
+                    <div class="step-num">01</div>
+                    <h4 style="color: #fff; margin-bottom: 10px;">Creative Sovereignty</h4>
+                    <p class="muted-text" style="font-size: 0.95rem;">Direct our team of 50+ concept artists and set builders to bring your architectural designs to real-life scale.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">02</div>
+                    <h4 style="color: #fff; margin-bottom: 10px;">The Experience</h4>
+                    <p class="muted-text" style="font-size: 0.95rem;">We cover your travel and accommodation to Lisbon, Portugal, allowing you to oversee the physical set build in person.</p>
+                </div>
+                <div class="step-box" style="border-color: var(--color-gold);">
+                    <div class="step-num" style="color: var(--color-gold);">03</div>
+                    <h4 class="gold-text" style="margin-bottom: 10px;">Content & Canon</h4>
+                    <p class="muted-text" style="font-size: 0.95rem;">Get full on-set production access, Alexa Mini LF gear, and editing support to shoot a "Designing a Movie Set" video for your channel. Plus, your designs become official canon lore.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <p style="color: #fff; margin-bottom: 25px; font-size: 1.2rem; font-family: var(--font-display);">We’d love for you to place the cornerstone.</p>
+                <a href="#" class="btn" onclick="alert('Opening Calendly integration...')">Schedule a 15-Minute Chat</a>
+                <br><br>
+                <a href="#" style="color: var(--color-text-muted); border-bottom: 1px solid #555; font-size: 0.9rem; margin-top: 20px; display: inline-block;">Or view the full Project Pitch Deck</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
