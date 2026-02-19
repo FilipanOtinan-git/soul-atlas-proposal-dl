@@ -34,9 +34,7 @@ This project is designed to be lightweight and zero-friction.
 
 Local Preview: Open index.html in any modern browser.
 
-GitHub Pages: Go to Settings > Pages and set the branch to main to launch the live URL.
-
-One-Click Share: Drag the index.html into Tiiny.host for a professional temporary link.
+One-Click Share: into Tiiny.host for a professional temporary link.
 
 Creative Brief Summary
 
